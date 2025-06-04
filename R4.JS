@@ -156,3 +156,105 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+   // Show navbar
+                showNavbar();
+                
+                // Auto-play music when invitation is opened
+                song.play().then(() => {
+                    iconSymbol.classList.remove("bi-play-fill");
+                    iconSymbol.classList.add("bi-pause-fill");
+                    iconWrapper.classList.add("rotate");
+                }).catch(error => {
+                    console.log("Autoplay prevented by browser:", error);
+                });
+            
+            
+            // Main invitation button
+            openInvitationBtn.addEventListener("click", openInvitation);
+
+            // Handle window resize
+            window.addEventListener("resize", () => {
+                const isDesktop = window.innerWidth > 768;
+                
+                if (isDesktop) {
+                    // Remove mobile classes when switching to desktop
+                    leftPanel.classList.remove("hide-on-mobile");
+                    rightPanel.classList.remove("expanded");
+                    if (navbar.classList.contains("visible")) {
+                        navbar.classList.remove("expanded");
+                    }
+                } else {
+                    // Add expanded class to navbar on mobile if invitation is open
+                    if (navbar.classList.contains("visible")) {
+                        navbar.classList.add("expanded");
+                    }
+                }
+            });
+
+        // Show navbar when invitation is opened
+        function showNavbar() {
+            const navbar = document.getElementById("navbar");
+            navbar.classList.add("visible");
+            
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+            if (isMobile || rightPanel.classList.contains("expanded")) {
+                navbar.classList.add("expanded");
+            }
+        }
+
+        // Navbar scroll functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('.content-section');
+            
+            // Handle navbar clicks
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('data-section');
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        // Remove active class from all nav items
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        // Add active class to clicked item
+                        this.classList.add('active');
+                        
+                        // Scroll to target section
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Update active nav item on scroll
+            function updateActiveNavItem() {
+                const navbar = document.getElementById("navbar");
+                if (!navbar.classList.contains("visible")) return;
+                
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (sectionTop <= 100 && sectionTop + sectionHeight > 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('data-section') === current) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', updateActiveNavItem);
+            rightPanel.addEventListener('scroll', updateActiveNavItem);
+        });
