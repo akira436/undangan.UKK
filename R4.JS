@@ -1,5 +1,6 @@
+// saat dokumen dimuat
 document.addEventListener("DOMContentLoaded", () => {
-  // Elements
+  // Mengambil elemen tombol pembuka undangan dan elemen panel
   const openInvitationBtn = document.getElementById("openInvitationBtn");
   const leftPanel = document.getElementById("leftpanel");
   const rightPanel = document.getElementById("rightpanel");
@@ -7,112 +8,119 @@ document.addEventListener("DOMContentLoaded", () => {
   const iconSymbol = document.getElementById("audioIconSymbol");
   const iconWrapper = document.getElementById("audioIcon");
 
-  // Function to open the invitation
+  // Fungsi untuk membuka undangan
   function openInvitation() {
-    // Check if it's mobile/tablet (768px and below)
+    // Cek apakah layar adalah mobile/tablet (<= 768px)
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     if (isMobile) {
-      // Hide left panel with animation on mobile
+      // Jika mobile, sembunyikan panel kiri dan perluas panel kanan
       leftPanel.classList.add("hide-on-mobile");
       rightPanel.classList.add("expanded");
     } else {
-      // On desktop, scroll to first content section
+      // Jika desktop, scroll ke bagian pertama dari konten undangan
       const firstSection = rightPanel.querySelector(".content-section");
       firstSection.scrollIntoView({ behavior: "smooth" });
     }
 
-    // Auto-play music when invitation is opened
+    // Putar musik secara otomatis saat undangan dibuka
     song
       .play()
       .then(() => {
+        // Ubah ikon menjadi ikon pause dan mulai rotasi
         iconSymbol.classList.remove("bi-play-fill");
         iconSymbol.classList.add("bi-pause-fill");
         iconWrapper.classList.add("rotate");
       })
       .catch((error) => {
+        // Jika autoplay gagal karena dicegah browser
         console.log("Autoplay prevented by browser:", error);
       });
   }
 
-  // Main invitation button
+  // Event listener untuk tombol "Buka Undangan"
   openInvitationBtn.addEventListener("click", openInvitation);
 
-  // Handle window resize
+  // Saat ukuran jendela berubah
   window.addEventListener("resize", () => {
     const isDesktop = window.innerWidth > 768;
 
     if (isDesktop) {
-      // Remove mobile classes when switching to desktop
+      // Jika berubah ke desktop, kembalikan layout ke semula
       leftPanel.classList.remove("hide-on-mobile");
       rightPanel.classList.remove("expanded");
     }
   });
 });
 
-// Countdown Timer
-function updateCountdown() {
-  const weddingDate = new Date("2025-06-22T16:30:00").getTime();
-  const now = new Date().getTime();
-  const distance = weddingDate - now;
 
+
+// coutdown
+function updateCountdown() {
+  // Tentukan waktu pernikahan
+  const weddingDate = new Date("2025-06-22T16:30:00").getTime();
+  const now = new Date().getTime(); // Waktu saat ini
+  const distance = weddingDate - now; // Selisih waktu
+
+  // Hitung hari, jam, menit, detik
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("days").textContent = days
-    .toString()
-    .padStart(2, "0");
-  document.getElementById("hours").textContent = hours
-    .toString()
-    .padStart(2, "0");
-  document.getElementById("minutes").textContent = minutes
-    .toString()
-    .padStart(2, "0");
-  document.getElementById("seconds").textContent = seconds
-    .toString()
-    .padStart(2, "0");
+  // Tampilkan ke HTML
+  document.getElementById("days").textContent = days.toString().padStart(2, "0");
+  document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+  document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+  document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
 
+  // Jika waktu telah lewat, tampilkan pesan
   if (distance < 0) {
     document.getElementById("countdown").innerHTML =
       '<div class="countdown-item"><h3 style="color: var(--sage);">Hari Bahagia Telah Tiba! 🎉</h3></div>';
   }
 }
 
+// Perbarui countdown setiap detik
 setInterval(updateCountdown, 1000);
-updateCountdown();
+updateCountdown(); // Jalankan sekali saat awal
 
-// Fade in animation on scroll
+
+
+// Animasi saat scroll muncul
 function fadeInOnScroll() {
   const elements = document.querySelectorAll(".fade-in");
+
   elements.forEach((element) => {
     const elementTop = element.getBoundingClientRect().top;
     const elementVisible = 150;
 
+    // Jika elemen masuk area tampilan, beri class 'visible'
     if (elementTop < window.innerHeight - elementVisible) {
       element.classList.add("visible");
     }
   });
 }
 
+// Jalankan saat scroll dan saat awal load
 window.addEventListener("scroll", fadeInOnScroll);
 fadeInOnScroll();
 
-// Background Music Toggle
+// Kontrol Musik Background 
 const song = document.getElementById("song");
 const iconWrapper = document.getElementById("audioIcon");
 const iconSymbol = document.getElementById("audioIconSymbol");
 
+// Ketika ikon musik diklik
 iconWrapper.addEventListener("click", () => {
   if (song.paused) {
+    // Jika lagu sedang berhenti, putar
     song.play();
     iconSymbol.classList.remove("bi-play-fill");
     iconSymbol.classList.add("bi-pause-fill");
     iconWrapper.classList.add("rotate");
   } else {
+    // Jika lagu sedang bermain, pause
     song.pause();
     iconSymbol.classList.remove("bi-pause-fill");
     iconSymbol.classList.add("bi-play-fill");
@@ -120,53 +128,31 @@ iconWrapper.addEventListener("click", () => {
   }
 });
 
-// RSVP Form Submission
+// bagian Form RSVP
 document.getElementById("rsvpForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+  e.preventDefault(); // Mencegah form dikirim secara default
 
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData);
+  const formData = new FormData(this); // Ambil data dari form
+  const data = Object.fromEntries(formData); // Konversi ke objek
 
+  // Validasi field wajib
   if (!data.firstName || !data.lastName || !data.email || !data.attendance) {
     alert("Mohon lengkapi semua field yang wajib diisi.");
     return;
   }
 
-  alert(
-    "Terima kasih atas konfirmasi kehadiran Anda! Kami tidak sabar menunggu kehadiran Anda! 🌸💕"
-  );
-  this.reset();
+  // Jika berhasil
+  alert("Terima kasih atas konfirmasi kehadiran Anda! Kami tidak sabar menunggu kehadiran Anda! 🌸💕");
+  this.reset(); // Reset form
 });
 
-// Add stagger animation delays
+// delay efek animasi
 document.addEventListener("DOMContentLoaded", function () {
   const fadeElements = document.querySelectorAll(".fade-in");
+
+  // Tambahkan delay transisi berdasarkan urutan elemen
   fadeElements.forEach((element, index) => {
     element.style.transitionDelay = `${index * 0.1}s`;
   });
 });
-
-function buatBunga() {
-  const bungaContainer = document.getElementById("bunga-container");
-  const rightPanel = document.getElementById("rightpanel");
-
-  const bunga = document.createElement("div");
-  bunga.classList.add("bunga");
-
-  // Posisi jatuh acak di dalam rightPanel
-  const rightPanelRect = rightPanel.getBoundingClientRect();
-  const maxX = rightPanel.clientWidth;
-  const randomLeft = Math.random() * maxX;
-
-  bunga.style.left = `${randomLeft}px`;
-  bunga.style.animationDuration = `${3 + Math.random() * 5}s`;
-
-  bungaContainer.appendChild(bunga);
-
-  // Hapus bunga setelah animasi selesai
-  setTimeout(() => {
-    bunga.remove();
-  }, 8000);
-}
-setInterval(buatBunga, 800);
 
