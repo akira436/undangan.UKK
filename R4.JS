@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
       firstSection.scrollIntoView({ behavior: "smooth" });
     }
 
+    // Tampilkan navbar setelah undangan dibuka
+    showNavbar();
+
     // Putar musik secara otomatis saat undangan dibuka
     song
       .play()
@@ -49,11 +52,98 @@ document.addEventListener("DOMContentLoaded", () => {
       // Jika berubah ke desktop, kembalikan layout ke semula
       leftPanel.classList.remove("hide-on-mobile");
       rightPanel.classList.remove("expanded");
+      // Sesuaikan navbar untuk desktop
+      const navbar = document.getElementById("navbar");
+      if (navbar.classList.contains("visible")) {
+        navbar.classList.remove("expanded");
+      }
+    } else {
+      // Jika berubah ke mobile dan navbar terlihat, perluas navbar
+      const navbar = document.getElementById("navbar");
+      if (navbar.classList.contains("visible")) {
+        navbar.classList.add("expanded");
+      }
     }
   });
 });
 
+// Fungsi untuk menampilkan navbar setelah undangan dibuka
+function showNavbar() {
+  const navbar = document.getElementById("navbar");
+  navbar.classList.add("visible");
+  
+  // Cek apakah mobile atau panel kanan diperluas
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const rightPanel = document.getElementById("rightpanel");
+  
+  if (isMobile || rightPanel.classList.contains("expanded")) {
+    navbar.classList.add("expanded");
+  }
+}
 
+// Fungsi navigasi navbar - menangani klik pada item navbar
+document.addEventListener('DOMContentLoaded', function() {
+  const navItems = document.querySelectorAll('.nav-item');
+  const sections = document.querySelectorAll('.content-section');
+  
+  // Menangani klik pada item navbar
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault(); // Mencegah default link behavior
+      
+      // Ambil ID section target dari data-section attribute
+      const targetId = this.getAttribute('data-section');
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        // Hapus class active dari semua item navbar
+        navItems.forEach(nav => nav.classList.remove('active'));
+        // Tambahkan class active ke item yang diklik
+        this.classList.add('active');
+        
+        // Scroll smooth ke section target
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+  
+  // Fungsi untuk update item navbar aktif berdasarkan scroll position
+  function updateActiveNavItem() {
+    const navbar = document.getElementById("navbar");
+    // Hanya jalankan jika navbar terlihat
+    if (!navbar.classList.contains("visible")) return;
+    
+    let current = '';
+    // Cek section mana yang sedang terlihat di viewport
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      const sectionHeight = section.offsetHeight;
+      
+      // Jika section berada di area viewport (dengan offset 100px dari atas)
+      if (sectionTop <= 100 && sectionTop + sectionHeight > 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    // Update class active pada navbar items
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('data-section') === current) {
+        item.classList.add('active');
+      }
+    });
+  }
+  
+  // Listen untuk scroll events pada window dan right panel
+  window.addEventListener('scroll', updateActiveNavItem);
+  const rightPanel = document.getElementById('rightpanel');
+  if (rightPanel) {
+    rightPanel.addEventListener('scroll', updateActiveNavItem);
+  }
+});
 
 // coutdown
 function updateCountdown() {
@@ -84,8 +174,6 @@ function updateCountdown() {
 // Perbarui countdown setiap detik
 setInterval(updateCountdown, 1000);
 updateCountdown(); // Jalankan sekali saat awal
-
-
 
 // Animasi saat scroll muncul
 function fadeInOnScroll() {
@@ -155,106 +243,3 @@ document.addEventListener("DOMContentLoaded", function () {
     element.style.transitionDelay = `${index * 0.1}s`;
   });
 });
-
-
-   // Show navbar
-                showNavbar();
-                
-                // Auto-play music when invitation is opened
-                song.play().then(() => {
-                    iconSymbol.classList.remove("bi-play-fill");
-                    iconSymbol.classList.add("bi-pause-fill");
-                    iconWrapper.classList.add("rotate");
-                }).catch(error => {
-                    console.log("Autoplay prevented by browser:", error);
-                });
-            
-            
-            // Main invitation button
-            openInvitationBtn.addEventListener("click", openInvitation);
-
-            // Handle window resize
-            window.addEventListener("resize", () => {
-                const isDesktop = window.innerWidth > 768;
-                
-                if (isDesktop) {
-                    // Remove mobile classes when switching to desktop
-                    leftPanel.classList.remove("hide-on-mobile");
-                    rightPanel.classList.remove("expanded");
-                    if (navbar.classList.contains("visible")) {
-                        navbar.classList.remove("expanded");
-                    }
-                } else {
-                    // Add expanded class to navbar on mobile if invitation is open
-                    if (navbar.classList.contains("visible")) {
-                        navbar.classList.add("expanded");
-                    }
-                }
-            });
-
-        // Show navbar when invitation is opened
-        function showNavbar() {
-            const navbar = document.getElementById("navbar");
-            navbar.classList.add("visible");
-            
-            const isMobile = window.matchMedia("(max-width: 768px)").matches;
-            if (isMobile || rightPanel.classList.contains("expanded")) {
-                navbar.classList.add("expanded");
-            }
-        }
-
-        // Navbar scroll functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const navItems = document.querySelectorAll('.nav-item');
-            const sections = document.querySelectorAll('.content-section');
-            
-            // Handle navbar clicks
-            navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('data-section');
-                    const targetSection = document.getElementById(targetId);
-                    
-                    if (targetSection) {
-                        // Remove active class from all nav items
-                        navItems.forEach(nav => nav.classList.remove('active'));
-                        // Add active class to clicked item
-                        this.classList.add('active');
-                        
-                        // Scroll to target section
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-            
-            // Update active nav item on scroll
-            function updateActiveNavItem() {
-                const navbar = document.getElementById("navbar");
-                if (!navbar.classList.contains("visible")) return;
-                
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    const sectionHeight = section.offsetHeight;
-                    
-                    if (sectionTop <= 100 && sectionTop + sectionHeight > 100) {
-                        current = section.getAttribute('id');
-                    }
-                });
-                
-                navItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('data-section') === current) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-            
-            // Listen for scroll events
-            window.addEventListener('scroll', updateActiveNavItem);
-            rightPanel.addEventListener('scroll', updateActiveNavItem);
-        });

@@ -1,943 +1,934 @@
-  :root {
-      /* Variabel warna utama yang digunakan di seluruh tema undangan */
-      --champagne: #F7E7CE;
-      --sage: #9CAF88;
-      --dark-sage: #7A8B6B;
-      --cream: #FDF8F0;
-      --gold: #D4AF37;
-      --text-dark: #2C3E2D;
-      --text-light: #6B7C6F;
-      --white: #FFFFFF;
-  }
+    :root {
+    /* Variabel warna utama yang digunakan di seluruh tema undangan */
+    --champagne: #F7E7CE;
+    --sage: #9CAF88;
+    --dark-sage: #7A8B6B;
+    --cream: #FDF8F0;
+    --gold: #D4AF37;
+    --text-dark: #2C3E2D;
+    --text-light: #6B7C6F;
+    --white: #FFFFFF;
+}
 
-  * {
-      /* Menghapus margin dan padding default, serta menggunakan box-sizing border-box agar ukuran elemen lebih mudah dikontrol */
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-  }
+* {
+    /* Menghapus margin dan padding default, serta menggunakan box-sizing border-box agar ukuran elemen lebih mudah dikontrol */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  body {
-      /* Mengatur font utama dan warna teks, serta mencegah scroll horizontal */
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      color: var(--text-dark);
-      overflow-x: hidden;
-  }
+body {
+    /* Mengatur font utama dan warna teks, serta mencegah scroll horizontal */
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
 
-  /* Container utama dengan layout horizontal (split screen) */
-  .main-container {
-      display: flex;
-      min-height: 100vh;
-  }
+/* Container utama dengan layout horizontal (split screen) */
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
 
-  /* Panel kiri dekoratif yang berisi nama pasangan dan tombol buka undangan */
-  .left-panel {
-      width: 40%;
-      background: linear-gradient(135deg, var(--sage) 0%, var(--dark-sage) 100%);
-      position: fixed;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 100;
-  }
+/* Panel kiri dekoratif yang berisi nama pasangan dan tombol buka undangan */
+.left-panel {
+    width: 40%;
+    background: linear-gradient(135deg, var(--sage) 0%, var(--dark-sage) 100%);
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+}
 
-  /* Menyembunyikan panel kiri di mobile saat tombol diklik */
-  .left-panel.hide-on-mobile {
-      transform: translateX(-100%);
-  }
+/* Menyembunyikan panel kiri di mobile saat tombol diklik */
+.left-panel.hide-on-mobile {
+    transform: translateX(-100%);
+}
 
-  .decorative-content {
-      /* Kontainer isi dekoratif (nama pasangan, tanggal, tombol) */
-      text-align: center;
-      z-index: 10;
-      position: relative;
-  }
+.decorative-content {
+    /* Kontainer isi dekoratif (nama pasangan, tanggal, tombol) */
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
 
-  /* Nama pasangan dengan font skrip besar dan bayangan */
-  .couple-names {
-      font-family: 'Dancing Script', cursive;
-      font-size: 4.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
+/* Nama pasangan dengan font skrip besar dan bayangan */
+.couple-names {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-  /* Tanggal pernikahan dengan font klasik */
-  .wedding-date {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-  }
+/* Tanggal pernikahan dengan font klasik */
+.wedding-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
 
-  /* Teks tambahan kecil */
-  .decorative-text {
-      font-size: 1.2rem;
-      opacity: 0.8;
-      margin-bottom: 3rem;
-  }
+/* Teks tambahan kecil */
+.decorative-text {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 3rem;
+}
 
-  /* Tombol untuk membuka undangan (memperluas panel kanan) */
-  .open-invite-btn {
-      background-color: white;
-      color: #4a5d47;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-  }
+/* Tombol untuk membuka undangan (memperluas panel kanan) */
+.open-invite-btn {
+    background-color: white;
+    color: #4a5d47;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
 
-  /* Efek hover pada tombol */
-  .open-invite-btn:hover {
-      background-color: #e0f1d6;
-      transform: translateY(-2px);
-  }
+/* Efek hover pada tombol */
+.open-invite-btn:hover {
+    background-color: #e0f1d6;
+    transform: translateY(-2px);
+}
 
-  /* Latar belakang dekoratif bunga yang transparan */
-  .floral-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0.1;
-      overflow: hidden;
-  }
+/* Latar belakang dekoratif bunga yang transparan */
+.floral-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    overflow: hidden;
+}
 
-  /* Elemen bunga individual */
-  .flower-element {
-      position: absolute;
-      font-size: 8rem;
-      color: white;
-      animation: floatFlower 8s ease-in-out infinite;
-  }
+/* Elemen bunga individual */
+.flower-element {
+    position: absolute;
+    font-size: 8rem;
+    color: white;
+    animation: floatFlower 8s ease-in-out infinite;
+}
 
-  /* Posisi dan delay animasi untuk masing-masing bunga */
-  .flower-1 {
-      top: 10%;
-      left: 10%;
-      animation-delay: 0s;
-  }
+/* Posisi dan delay animasi untuk masing-masing bunga */
+.flower-1 {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
 
-  .flower-2 {
-      top: 60%;
-      right: 15%;
-      animation-delay: -2s;
-  }
+.flower-2 {
+    top: 60%;
+    right: 15%;
+    animation-delay: -2s;
+}
 
-  .flower-3 {
-      bottom: 20%;
-      left: 20%;
-      animation-delay: -4s;
-  }
+.flower-3 {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -4s;
+}
 
-  .flower-4 {
-      top: 30%;
-      right: 5%;
-      animation-delay: -6s;
-  }
+.flower-4 {
+    top: 30%;
+    right: 5%;
+    animation-delay: -6s;
+}
 
-  /* Animasi mengambang dan berputar untuk bunga */
-  @keyframes floatFlower {
+/* Animasi mengambang dan berputar untuk bunga */
+@keyframes floatFlower {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
 
-      0%,
-      100% {
-          transform: translateY(0px) rotate(0deg);
-      }
+/* Kontainer kontrol musik di pojok kanan bawah */
+#audio-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+}
 
-      50% {
-          transform: translateY(-30px) rotate(180deg);
-      }
-  }
+/* Lingkaran ikon musik dengan efek blur */
+.audio-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(156, 175, 136, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-  /* Kontainer kontrol musik di pojok kanan bawah */
-  #audio-container {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 999;
-  }
+/* Efek membesar saat hover */
+.audio-icon-wrapper:hover {
+    transform: scale(1.1);
+}
 
-  /* Lingkaran ikon musik dengan efek blur */
-  .audio-icon-wrapper {
-      width: 60px;
-      height: 60px;
-      background-color: rgba(156, 175, 136, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-  }
+/* Ikon musik di dalam lingkaran */
+.audio-icon-wrapper i {
+    font-size: 28px;
+    color: white;
+}
 
-  /* Efek membesar saat hover */
-  .audio-icon-wrapper:hover {
-      transform: scale(1.1);
-  }
+/* Kelas animasi untuk memutar ikon musik */
+.rotate {
+    animation: spin 2s linear infinite;
+}
 
-  /* Ikon musik di dalam lingkaran */
-  .audio-icon-wrapper i {
-      font-size: 28px;
-      color: white;
-  }
+/* Animasi rotasi untuk ikon musik */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
-  /* Kelas animasi untuk memutar ikon musik */
-  .rotate {
-      animation: spin 2s linear infinite;
-  }
+/* Panel kanan tempat isi undangan (setelah dibuka) */
+.right-panel {
+    width: 60%;
+    margin-left: 40%;
+    background: var(--cream);
+    min-height: 100vh;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Menambahkan padding-top untuk navbar */
+    padding-top: 70px;
+}
 
-  /* Animasi rotasi untuk ikon musik */
-  @keyframes spin {
-      0% {
-          transform: rotate(0deg);
-      }
+/* Jika panel kiri disembunyikan, panel kanan melebar penuh */
+.right-panel.expanded {
+    width: 100%;
+    margin-left: 0;
+}
 
-      100% {
-          transform: rotate(360deg);
-      }
-  }
+/* =================== NAVBAR NAVIGATION =================== */
 
-  /* Panel kanan tempat isi undangan (setelah dibuka) */
-  .right-panel {
-      width: 60%;
-      margin-left: 40%;
-      background: var(--cream);
-      min-height: 100vh;
-      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+/* Navbar utama yang muncul setelah undangan dibuka */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 40%; /* Mulai dari posisi panel kanan */
+    right: 0;
+    background: rgba(255, 255, 255, 0.95); /* Background semi-transparan */
+    backdrop-filter: blur(10px); /* Efek blur glassmorphism */
+    border-bottom: 1px solid var(--champagne);
+    z-index: 500;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0; /* Awalnya tersembunyi */
+    transform: translateY(-100%); /* Mulai dari atas layar */
+    pointer-events: none; /* Tidak bisa diklik saat tersembunyi */
+}
 
-  /* Jika panel kiri disembunyikan, panel kanan melebar penuh */
-  .right-panel.expanded {
-      width: 100%;
-      margin-left: 0;
-  }
+/* Navbar terlihat setelah undangan dibuka */
+.navbar.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
+/* Navbar melebar penuh saat panel kiri disembunyikan */
+.navbar.expanded {
+    left: 0;
+}
+
+/* Container isi navbar */
+.nav-container {
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Daftar item navigasi */
+.nav-items {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Item navigasi individual */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    min-width: 60px;
+}
+
+/* Efek hover pada item navigasi */
+.nav-item:hover {
+    background: var(--champagne);
+    transform: translateY(-2px);
+}
+
+/* Item navigasi yang sedang aktif */
+.nav-item.active {
+    background: var(--sage);
+    color: white;
+}
+
+/* Ikon dalam item navigasi */
+.nav-item i {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+/* Label teks dalam item navigasi */
+.nav-item span {
+    font-weight: 500;
+    font-size: 0.7rem;
+}
 
   /* ===== Bagian Umum ===== */
 
-  /* Memberikan padding dan posisi relatif pada setiap section konten */
-  .content-section {
-      padding: 80px 60px;
-      position: relative;
-  }
-
-  /* Memberi background putih pada section genap */
-  .content-section:nth-child(even) {
-      background: var(--white);
-  }
-
-  /* Memberi background cream pada section ganjil */
-  .content-section:nth-child(odd) {
-      background: var(--cream);
-  }
-
-  /* ===== Judul Section ===== */
-
-  /* Styling untuk judul section (font script besar dan berwarna sage) */
-  .section-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3.5rem;
-      color: var(--sage);
-      margin-bottom: 2rem;
-      text-align: center;
-      position: relative;
-  }
-
-  /* Menambahkan ikon bunga di bawah judul */
-  .section-title::after {
-      content: '🌸';
-      position: absolute;
-      bottom: -35px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-  }
-
-  /* ===== Efek Bunga Jatuh ===== */
-
-  /* Properti dasar untuk elemen bunga yang jatuh */
-  .bunga {
-      position: absolute;
-      top: -40px;
-      width: 100px;
-      height: 100px;
-      background-image: url('asset-UKK/Untitled\ design.png');
-      /* Ganti sesuai path gambar bunga */
-      background-size: contain;
-      background-repeat: no-repeat;
-      opacity: 0.8;
-      animation-name: jatuh;
-      animation-timing-function: linear;
-  }
-
-  /* Animasi jatuh ke bawah sambil memudar dan berputar */
-  @keyframes jatuh {
-      0% {
-          transform: translateY(0) rotate(0deg);
-          opacity: 1;
-      }
-
-      100% {
-          transform: translateY(100vh) rotate(360deg);
-          opacity: 0;
-      }
-  }
-
-  /* Kontainer bunga jatuh agar tidak mengganggu elemen lain */
-  #bunga-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 5;
-  }
-
-  /* ===== Profil Mempelai ===== */
-
-  /* Mengatur dua kolom sejajar untuk profil */
-  .profile-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-top: 2rem;
-  }
-
-  /* Styling kartu profil dengan border dan efek hover */
-  .profile-card {
-      background: white;
-      border-radius: 25px;
-      padding: 2.5rem;
-      text-align: center;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 3px solid var(--champagne);
-  }
-
-  /* Efek naik dan bayangan lebih besar saat hover */
-  .profile-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Styling avatar lingkaran dengan ukuran tetap */
-  .profile-avatar img {
-      border-radius: 100%;
-      width: 150px;
-      height: 150px;
-      transition: transform 0.3s ease;
-  }
-
-  /* Efek zoom saat hover pada gambar avatar */
-  .profile-avatar img:hover {
-      transform: scale(1.3);
-      transition: transform 0.5s ease;
-  }
-
-  /* Latar belakang avatar dengan gradien dan border */
-  .profile-avatar {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin: 0 auto 1.5rem;
-      background: linear-gradient(135deg, var(--champagne), var(--sage));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: white;
-      border: 4px solid white;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Nama mempelai dengan font script */
-  .profile-name {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5rem;
-      color: var(--sage);
-      margin-bottom: 0.5rem;
-  }
-
-  /* Gelar atau peran mempelai */
-  .profile-title {
-      font-size: 1.1rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      font-weight: 500;
-  }
-
-  /* Deskripsi singkat mempelai */
-  .profile-description {
-      color: var(--text-light);
-      line-height: 1.7;
-  }
-
-  /* ===== Quote (Kutipan Cinta) ===== */
-
-  /* Background gradasi hijau dan teks putih */
-  .quote-section {
-      background: linear-gradient(135deg, var(--sage) 0%, var(--dark-sage) 100%);
-      color: white;
-      text-align: center;
-  }
-
-  /* Batas lebar kutipan */
-  .quote-container {
-      max-width: 700px;
-      margin: 0 auto;
-  }
-
-  /* Styling teks kutipan dengan font serif dan italic */
-  .quote-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-style: italic;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      position: relative;
-  }
-
-  /* Menambahkan tanda kutip besar sebelum dan sesudah */
-  .quote-text::before,
-  .quote-text::after {
-      content: '"';
-      font-size: 4rem;
-      color: var(--champagne);
-      position: absolute;
-      top: -20px;
-  }
-
-  /* Tanda kutip awal */
-  .quote-text::before {
-      left: -30px;
-  }
-
-  /* Tanda kutip akhir */
-  .quote-text::after {
-      right: -30px;
-  }
-
-  /* Nama penulis kutipan */
-  .quote-author {
-      font-size: 1.2rem;
-      opacity: 0.9;
-  }
-
-  /* ===== Informasi Acara ===== */
-
-  /* Layout grid responsif untuk daftar acara */
-  .event-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-  }
-
-  /* Kartu informasi acara */
-  .event-card {
-      background: white;
-      border-radius: 20px;
-      padding: 2.5rem;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border: 2px solid var(--champagne);
-      transition: transform 0.3s ease;
-  }
-
-  /* Efek hover: kartu naik sedikit */
-  .event-card:hover {
-      transform: translateY(-5px);
-  }
-
-  /* Ikon acara */
-  .event-icon {
-      font-size: 3.5rem;
-      color: var(--sage);
-      margin-bottom: 1.5rem;
-  }
-
-  /* Judul acara */
-  .event-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--text-dark);
-      margin-bottom: 1rem;
-  }
-
-  /* Detail acara seperti waktu, tempat, dll */
-  .event-details {
-      color: var(--text-light);
-      line-height: 1.7;
-  }
-
-  /* Penekanan warna pada teks penting dalam detail */
-  .event-details strong {
-      color: var(--sage);
-  }
-
-  /* ===== Peta Lokasi ===== */
-
-  /* Container peta dengan border dan bayangan */
-  .map-container {
-      margin-top: 2rem;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-      border: 3px solid var(--champagne);
-  }
-
-  /* Iframe peta Google Maps */
-  .map-embed {
-      width: 100%;
-      height: 450px;
-      border: none;
-  }
-
-  /* ===== Galeri Foto ===== */
-
-  /* Grid galeri dengan item responsif */
-  .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-  }
-
-  /* Ukuran default gambar galeri */
-  .gallery-grid img {
-      width: 150px;
-      height: 150px;
-      transition: transform 0.3s ease;
-  }
-
-  /* Efek zoom saat hover pada gambar */
-  .gallery-grid img:hover {
-      transform: scale(1.3);
-      transition: transform 0.5s ease;
-  }
-
-  /* Kotak latar belakang item galeri */
-  .gallery-item {
-      aspect-ratio: 1;
-      background: linear-gradient(45deg, var(--champagne), var(--sage));
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 3rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      border: 3px solid white;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Efek animasi saat hover galeri: membesar dan berputar sedikit */
-  .gallery-item:hover {
-      transform: scale(1.05) rotate(2deg);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
-
-
-  /* =================== Countdown Timer =================== */
-
-  /* Container utama countdown: posisi tengah, responsif, dan berjarak */
-  .countdown-container {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-  }
-
-  /* Kartu individual countdown: background putih, border champagne, radius bulat */
-  .countdown-item {
-      background: white;
-      border-radius: 20px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border: 3px solid var(--champagne);
-      min-width: 120px;
-  }
-
-  /* Angka countdown dengan font script besar dan berwarna sage */
-  .countdown-number {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--sage);
-      display: block;
-  }
-
-  /* Label waktu (hari, jam, menit, detik) dalam uppercase dan huruf kecil */
-  .countdown-label {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 0.5rem;
-  }
-
-  /* =================== RSVP Form =================== */
-
-  /* Form RSVP: lebar maksimal 600px, tengah, latar putih, border champagne */
-  .rsvp-form {
-      max-width: 600px;
-      margin: 2rem auto 0;
-      background: white;
-      padding: 3rem;
-      border-radius: 25px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-      border: 3px solid var(--champagne);
-  }
-
-  /* Baris input 2 kolom (nama & email atau lainnya) */
-  .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-  }
-
-  /* Satu grup input (label + input/select/textarea) */
-  .form-group {
-      margin-bottom: 1.5rem;
-  }
-
-  /* Label pada setiap input */
-  .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: var(--text-dark);
-  }
-
-  /* Input, select, dan textarea bergaya rapi dan modern */
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-      width: 100%;
-      padding: 15px 20px;
-      border: 2px solid var(--champagne);
-      border-radius: 15px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      font-family: 'Poppins', sans-serif;
-  }
-
-  /* Efek fokus saat input aktif */
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-      outline: none;
-      border-color: var(--sage);
-      box-shadow: 0 0 0 3px rgba(156, 175, 136, 0.1);
-  }
-
-  /* Tombol submit RSVP dengan warna gradien dan efek hover */
-  .submit-btn {
-      background: linear-gradient(135deg, var(--sage), var(--dark-sage));
-      color: white;
-      border: none;
-      padding: 18px 40px;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      width: 100%;
-      font-family: 'Poppins', sans-serif;
-  }
-
-  /* Hover tombol RSVP: sedikit naik dan ada bayangan */
-  .submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(156, 175, 136, 0.3);
-  }
-
-  /* =================== Responsive Design =================== */
-
-  /* Tampilan untuk layar <= 1024px (tablet) */
-  @media (max-width: 1024px) {
-      .left-panel {
-          width: 35%;
-      }
-
-      .right-panel {
-          width: 65%;
-          margin-left: 35%;
-      }
-
-      .content-section {
-          padding: 60px 40px;
-      }
-  }
-
-  /* Tampilan untuk layar <= 768px (mobile) */
-  @media (max-width: 768px) {
-      .main-container {
-          flex-direction: column;
-      }
-
-      /* Panel kiri (foto pembuka) menjadi full-screen & fixed */
-      .left-panel {
-          width: 100%;
-          height: 100vh;
-          position: fixed;
-          top: 0;
-          left: 0;
-          z-index: 200;
-      }
-
-      /* Menyembunyikan panel kiri saat dibuka di mobile */
-      .left-panel.hide-on-mobile {
-          transform: translateX(-100%);
-      }
-
-      /* Panel kanan jadi 100% lebar layar */
-      .right-panel {
-          width: 100%;
-          margin-left: 0;
-          position: relative;
-          z-index: 100;
-      }
-
-      /* Panel kanan ketika diperluas (digunakan saat transisi) */
-      .right-panel.expanded {
-          width: 100%;
-          margin-left: 0;
-      }
-
-      /* Padding konten diubah agar tidak terlalu besar di mobile */
-      .content-section {
-          padding: 40px 20px;
-      }
-
-      /* Nama pasangan dikecilkan ukurannya */
-      .couple-names {
-          font-size: 3rem;
-      }
-
-      /* Judul section lebih kecil */
-      .section-title {
-          font-size: 2.5rem;
-      }
-
-      /* Profil mempelai ditampilkan satu kolom */
-      .profile-container {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-      }
-
-      /* Event (akad & resepsi) satu kolom */
-      .event-grid {
-          grid-template-columns: 1fr;
-      }
-
-      /* Form RSVP satu kolom */
-      .form-row {
-          grid-template-columns: 1fr;
-      }
-
-      /* Countdown lebih rapat */
-      .countdown-container {
-          gap: 1rem;
-      }
-
-      /* Kartu countdown diperkecil */
-      .countdown-item {
-          padding: 1.5rem 1rem;
-          min-width: 100px;
-      }
-
-      /* Ukuran angka countdown dikurangi */
-      .countdown-number {
-          font-size: 2.5rem;
-      }
-  }
-
-  /* =================== Animasi =================== */
-
-  /* Elemen akan muncul dari bawah dengan fade in */
-  .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  /* Saat elemen diberi class .visible, dia muncul */
-  .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-  }
-
-  /* =================== Scroll Indicator =================== */
-
-  /* Panah scroll (biasanya di bawah layar untuk scroll ke bawah) */
-  .scroll-indicator {
-      position: absolute;
-      bottom: 20px;
-      right: 30px;
-      color: var(--sage);
-      font-size: 2rem;
-      animation: bounce 2s infinite;
-      cursor: pointer;
-  }
-
-  /* Animasi bounce (naik turun lembut) */
-  @keyframes bounce {
-
-      0%,
-      20%,
-      50%,
-      80%,
-      100% {
-          transform: translateY(0);
-      }
-
-      40% {
-          transform: translateY(-10px);
-      }
-
-      60% {
-          transform: translateY(-5px);
-      }
-  }
-
-  /* styles navbar */
-  .navbar {
-      position: fixed;
-      top: 0;
-      left: 40%;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--champagne);
-      z-index: 500;
-      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      opacity: 0;
-      transform: translateY(-100%);
-      pointer-events: none;
-  }
-
-  .navbar.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-  }
-
-  .navbar.expanded {
-      left: 0;
-  }
-
-  .nav-container {
-      padding: 0 2rem;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .nav-items {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-  }
-
-  .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      color: var(--text-dark);
-      border-radius: 15px;
-      transition: all 0.3s ease;
-      font-size: 0.8rem;
-      min-width: 60px;
-  }
-
-  .nav-item:hover {
-      background: var(--champagne);
-      transform: translateY(-2px);
-  }
-
-  .nav-item.active {
-      background: var(--sage);
-      color: white;
-  }
-
-  .nav-item i {
-      font-size: 1.2rem;
-      margin-bottom: 0.2rem;
-  }
-
-  .nav-item span {
-      font-weight: 500;
-      font-size: 0.7rem;
-  }
-
-  /* Adjust right panel for navbar */
-  .right-panel {
-      padding-top: 70px;
-  }
-
-  /* Mobile navbar styles */
-  @media (max-width: 1024px) {
-      .navbar {
-          left: 35%;
-      }
-
-      .navbar.expanded {
-          left: 0;
-      }
-  }
-
-  @media (max-width: 768px) {
-      .navbar {
-          left: 0;
-          right: 0;
-      }
-
-      .nav-container {
-          padding: 0 1rem;
-          height: 60px;
-      }
-
-      .nav-items {
-          gap: 0.5rem;
-          overflow-x: auto;
-          padding: 0 0.5rem;
-      }
-
-      .nav-item {
-          padding: 0.4rem 0.8rem;
-          min-width: 50px;
-          flex-shrink: 0;
-      }
-
-      .nav-item i {
-          font-size: 1rem;
-      }
-
-      .nav-item span {
-          font-size: 0.6rem;
-      }
-
-      .right-panel {
-          padding-top: 60px;
-      }
-  }
+/* Memberikan padding dan posisi relatif pada setiap section konten */
+.content-section {
+  padding: 80px 60px;
+  position: relative;
+}
+
+/* Memberi background putih pada section genap */
+.content-section:nth-child(even) {
+  background: var(--white);
+}
+
+/* Memberi background cream pada section ganjil */
+.content-section:nth-child(odd) {
+  background: var(--cream);
+}
+
+/* ===== Judul Section ===== */
+
+/* Styling untuk judul section (font script besar dan berwarna sage) */
+.section-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  color: var(--sage);
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+/* Menambahkan ikon bunga di bawah judul */
+.section-title::after {
+  content: '🌸';
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+}
+
+/* ===== Efek Bunga Jatuh ===== */
+
+/* Properti dasar untuk elemen bunga yang jatuh */
+.bunga {
+  position: absolute;
+  top: -40px;
+  width: 100px;
+  height: 100px;
+  background-image: url('asset-UKK/Untitled\ design.png'); /* Ganti sesuai path gambar bunga */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  animation-name: jatuh;
+  animation-timing-function: linear;
+}
+
+/* Animasi jatuh ke bawah sambil memudar dan berputar */
+@keyframes jatuh {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Kontainer bunga jatuh agar tidak mengganggu elemen lain */
+#bunga-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* ===== Profil Mempelai ===== */
+
+/* Mengatur dua kolom sejajar untuk profil */
+.profile-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+/* Styling kartu profil dengan border dan efek hover */
+.profile-card {
+  background: white;
+  border-radius: 25px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid var(--champagne);
+}
+
+/* Efek naik dan bayangan lebih besar saat hover */
+.profile-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling avatar lingkaran dengan ukuran tetap */
+.profile-avatar img {
+  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+  transition: transform 0.3s ease;
+}
+
+/* Efek zoom saat hover pada gambar avatar */
+.profile-avatar img:hover {
+  transform: scale(1.3);
+  transition: transform 0.5s ease;
+}
+
+/* Latar belakang avatar dengan gradien dan border */
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--champagne), var(--sage));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+  border: 4px solid white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Nama mempelai dengan font script */
+.profile-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: var(--sage);
+  margin-bottom: 0.5rem;
+}
+
+/* Gelar atau peran mempelai */
+.profile-title {
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* Deskripsi singkat mempelai */
+.profile-description {
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ===== Quote (Kutipan Cinta) ===== */
+
+/* Background gradasi hijau dan teks putih */
+.quote-section {
+  background: linear-gradient(135deg, var(--sage) 0%, var(--dark-sage) 100%);
+  color: white;
+  text-align: center;
+}
+
+/* Batas lebar kutipan */
+.quote-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Styling teks kutipan dengan font serif dan italic */
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-style: italic;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Menambahkan tanda kutip besar sebelum dan sesudah */
+.quote-text::before,
+.quote-text::after {
+  content: '"';
+  font-size: 4rem;
+  color: var(--champagne);
+  position: absolute;
+  top: -20px;
+}
+
+/* Tanda kutip awal */
+.quote-text::before {
+  left: -30px;
+}
+
+/* Tanda kutip akhir */
+.quote-text::after {
+  right: -30px;
+}
+
+/* Nama penulis kutipan */
+.quote-author {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* ===== Informasi Acara ===== */
+
+/* Layout grid responsif untuk daftar acara */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Kartu informasi acara */
+.event-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--champagne);
+  transition: transform 0.3s ease;
+}
+
+/* Efek hover: kartu naik sedikit */
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Ikon acara */
+.event-icon {
+  font-size: 3.5rem;
+  color: var(--sage);
+  margin-bottom: 1.5rem;
+}
+
+/* Judul acara */
+.event-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+/* Detail acara seperti waktu, tempat, dll */
+.event-details {
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* Penekanan warna pada teks penting dalam detail */
+.event-details strong {
+  color: var(--sage);
+}
+
+/* ===== Peta Lokasi ===== */
+
+/* Container peta dengan border dan bayangan */
+.map-container {
+  margin-top: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border: 3px solid var(--champagne);
+}
+
+/* Iframe peta Google Maps */
+.map-embed {
+  width: 100%;
+  height: 450px;
+  border: none;
+}
+
+/* ===== Galeri Foto ===== */
+
+/* Grid galeri dengan item responsif */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Ukuran default gambar galeri */
+.gallery-grid img {
+  width: 150px;
+  height: 150px;
+  transition: transform 0.3s ease;
+}
+
+/* Efek zoom saat hover pada gambar */
+.gallery-grid img:hover {
+  transform: scale(1.3);
+  transition: transform 0.5s ease;
+}
+
+/* Kotak latar belakang item galeri */
+.gallery-item {
+  aspect-ratio: 1;
+  background: linear-gradient(45deg, var(--champagne), var(--sage));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Efek animasi saat hover galeri: membesar dan berputar sedikit */
+.gallery-item:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =================== Countdown Timer =================== */
+
+/* Container utama countdown: posisi tengah, responsif, dan berjarak */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Kartu individual countdown: background putih, border champagne, radius bulat */
+.countdown-item {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--champagne);
+    min-width: 120px;
+}
+
+/* Angka countdown dengan font script besar dan berwarna sage */
+.countdown-number {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--sage);
+    display: block;
+}
+
+/* Label waktu (hari, jam, menit, detik) dalam uppercase dan huruf kecil */
+.countdown-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+/* =================== RSVP Form =================== */
+
+/* Form RSVP: lebar maksimal 600px, tengah, latar putih, border champagne */
+.rsvp-form {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--champagne);
+}
+
+/* Baris input 2 kolom (nama & email atau lainnya) */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Satu grup input (label + input/select/textarea) */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Label pada setiap input */
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* Input, select, dan textarea bergaya rapi dan modern */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid var(--champagne);
+    border-radius: 15px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Efek fokus saat input aktif */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(156, 175, 136, 0.1);
+}
+
+/* Tombol submit RSVP dengan warna gradien dan efek hover */
+.submit-btn {
+    background: linear-gradient(135deg, var(--sage), var(--dark-sage));
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hover tombol RSVP: sedikit naik dan ada bayangan */
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(156, 175, 136, 0.3);
+}
+
+/* =================== Responsive Design =================== */
+
+/* Tampilan untuk layar <= 1024px (tablet) */
+@media (max-width: 1024px) {
+    .left-panel {
+        width: 35%;
+    }
+
+    .right-panel {
+        width: 65%;
+        margin-left: 35%;
+    }
+
+    .content-section {
+        padding: 60px 40px;
+    }
+
+    /* Navbar menyesuaikan posisi panel kiri */
+    .navbar {
+        left: 35%;
+    }
+    
+    .navbar.expanded {
+        left: 0;
+    }
+}
+
+/* Tampilan untuk layar <= 768px (mobile) */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    /* Panel kiri (foto pembuka) menjadi full-screen & fixed */
+    .left-panel {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 200;
+    }
+
+    /* Menyembunyikan panel kiri saat dibuka di mobile */
+    .left-panel.hide-on-mobile {
+        transform: translateX(-100%);
+    }
+
+    /* Panel kanan jadi 100% lebar layar */
+    .right-panel {
+        width: 100%;
+        margin-left: 0;
+        position: relative;
+        z-index: 100;
+        /* Padding-top dikurangi untuk mobile */
+        padding-top: 60px;
+    }
+
+    /* Panel kanan ketika diperluas (digunakan saat transisi) */
+    .right-panel.expanded {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    /* Padding konten diubah agar tidak terlalu besar di mobile */
+    .content-section {
+        padding: 40px 20px;
+    }
+
+    /* Nama pasangan dikecilkan ukurannya */
+    .couple-names {
+        font-size: 3rem;
+    }
+
+    /* Judul section lebih kecil */
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    /* Profil mempelai ditampilkan satu kolom */
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Event (akad & resepsi) satu kolom */
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Form RSVP satu kolom */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Countdown lebih rapat */
+    .countdown-container {
+        gap: 1rem;
+    }
+
+    /* Kartu countdown diperkecil */
+    .countdown-item {
+        padding: 1.5rem 1rem;
+        min-width: 100px;
+    }
+
+    /* Ukuran angka countdown dikurangi */
+    .countdown-number {
+        font-size: 2.5rem;
+    }
+
+    /* Navbar mobile styling */
+    .navbar {
+        left: 0;
+        right: 0;
+    }
+    
+    .nav-container {
+        padding: 0 1rem;
+        height: 60px;
+    }
+    
+    .nav-items {
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding: 0 0.5rem;
+    }
+    
+    .nav-item {
+        padding: 0.4rem 0.8rem;
+        min-width: 50px;
+        flex-shrink: 0;
+    }
+    
+    .nav-item i {
+        font-size: 1rem;
+    }
+    
+    .nav-item span {
+        font-size: 0.6rem;
+    }
+}
+
+/* =================== Animasi =================== */
+
+/* Elemen akan muncul dari bawah dengan fade in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Saat elemen diberi class .visible, dia muncul */
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =================== Scroll Indicator =================== */
+
+/* Panah scroll (biasanya di bawah layar untuk scroll ke bawah) */
+.scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    color: var(--sage);
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+/* Animasi bounce (naik turun lembut) */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
